@@ -18,12 +18,14 @@ const NavbarItem: FC<Props> = ({
   setSelectedNavbarItem,
 }) => {
   const clickHandler = () => {
+    // if the navbar item is not the the title on the left
     if (navbarItem !== navbarItems[0]) {
       setSelectedNavbarItem(navbarItem);
     }
   };
 
   const NavbarTitleUnderline = () => {
+    // if the navbar item is the the selected one then add the underline
     if (navbarItem === selectedNavbarItem) {
       return <NavbarUnderline layoutId="underline" />;
     }
