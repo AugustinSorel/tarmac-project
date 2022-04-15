@@ -11,11 +11,9 @@ import {
 const DeparturePage = () => {
   const { isLoading, data } = useQuery("flightList", getFlights);
 
-  if (isLoading) {
+  if (isLoading || !data) {
     return <div>Loading...</div>;
   }
-
-  console.log(data);
 
   return (
     <DepartureContainer>
@@ -25,9 +23,9 @@ const DeparturePage = () => {
         <DepartureFilters>filters...</DepartureFilters>
 
         <DepartureList>
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((item) => (
-            <h1 key={item}>{item}</h1>
-          ))}
+          {data.map((flight, index) => {
+            return <div key={index}>{flight.flight.number}</div>;
+          })}
         </DepartureList>
       </DepartureSection>
     </DepartureContainer>
