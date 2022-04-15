@@ -6,7 +6,7 @@ export type NavbarLink = {
 const navbarLinks: NavbarLink[] = [
   {
     name: "tarmac",
-    url: "/",
+    url: "/arrival",
   },
   {
     name: "arrival",

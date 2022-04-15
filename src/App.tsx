@@ -1,8 +1,7 @@
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import ArrivalPage from "./pages/ArrivalPage";
 import DeparturePage from "./pages/DeparturePage";
-import HomePage from "./pages/HomePage";
 import Navbar from "./shared/components/Navigation/Navbar";
 import GlobalStyle from "./shared/styles/GlobalStyle";
 import theme from "./shared/styles/theme";
@@ -16,9 +15,9 @@ function App() {
       <Navbar />
 
       <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<HomePage />} />
         <Route path="/arrival" element={<ArrivalPage />} />
         <Route path="/departure" element={<DeparturePage />} />
+        <Route path="*" element={<Navigate to="/arrival" />} />
       </Routes>
     </ThemeProvider>
   );

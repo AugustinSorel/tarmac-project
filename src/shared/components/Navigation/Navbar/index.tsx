@@ -17,7 +17,7 @@ const Navbar = () => {
         <HeaderList>
           {navbarLinks.map((navbarLink: NavbarLink) => (
             <NavbarItem
-              key={navbarLink.url}
+              key={navbarLink.name}
               link={navbarLink}
               selectedLinkUrl={selectedLinkUrl}
               setSelectedLinkUrl={setSelectedLinkUrl}

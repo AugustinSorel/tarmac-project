@@ -22,7 +22,7 @@ const NavbarItem: FC<Props> = ({
   };
 
   const HeaderLinkUnderline = () => {
-    if (link.url !== "/" && link.url === selectedLinkUrl) {
+    if (link.name !== "tarmac" && link.url === selectedLinkUrl) {
       return <NavbarUnderline layoutId="underline" />;
     }
     return null;
