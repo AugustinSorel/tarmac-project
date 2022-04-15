@@ -5,7 +5,7 @@ import NavbarItem from "./NavbarItem";
 
 const Navbar = () => {
   // the selected link url is used for the underline animation
-  const [selectedLinkUrl, setSelectedLinkUrl] = useState(navbarLinks[0].url);
+  const [selectedLinkUrl, setSelectedLinkUrl] = useState("");
 
   useEffect(() => {
     setSelectedLinkUrl(window.location.pathname);
