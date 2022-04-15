@@ -6,6 +6,7 @@ declare module "styled-components" {
       background: string;
       backgroundDark: string;
       color: string;
+      accentColor: string;
     };
 
     fontSizes: {

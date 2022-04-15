@@ -1,4 +1,5 @@
 import { ThemeProvider } from "styled-components";
+import Navbar from "./shared/components/Navigation/Navbar";
 import GlobalStyle from "./shared/styles/GlobalStyle";
 import theme from "./shared/styles/theme";
 
@@ -6,7 +7,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <h1>Hello, world!</h1>
+      <Navbar />
     </ThemeProvider>
   );
 }

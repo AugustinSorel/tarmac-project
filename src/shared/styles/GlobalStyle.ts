@@ -13,6 +13,7 @@ const GlobalStyle = createGlobalStyle`
         --background-dark-color: ${(props) =>
           props.theme.colors.backgroundDark};
         --color: ${(props) => props.theme.colors.color};
+        --accent-color: ${(props) => props.theme.colors.accentColor};
 
         --font-size-small: ${(props) => props.theme.fontSizes.small};
         --font-size-medium: ${(props) => props.theme.fontSizes.medium};

@@ -2,9 +2,10 @@ import { DefaultTheme } from "styled-components";
 
 const theme: DefaultTheme = {
   colors: {
-    background: "#A0AECD",
-    backgroundDark: "#95a2bf",
-    color: "#333333",
+    background: "#FFFFFF",
+    backgroundDark: "#F5F7FB",
+    color: "#303947",
+    accentColor: "#0C2480",
   },
 
   fontSizes: {
