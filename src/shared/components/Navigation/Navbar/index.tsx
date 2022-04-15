@@ -1,6 +1,6 @@
 import { useState } from "react";
 import navbarItems from "../../../utils/navbarItems";
-import { Header, HeaderList, HeaderNav } from "./Navbar.styled";
+import { Header, NavbarList, Nav } from "./Navbar.styled";
 import NavbarItem from "./NavbarItem";
 
 const Navbar = () => {
@@ -9,8 +9,8 @@ const Navbar = () => {
 
   return (
     <Header>
-      <HeaderNav>
-        <HeaderList>
+      <Nav>
+        <NavbarList>
           {navbarItems.map((navbarItem) => (
             <NavbarItem
               key={navbarItem}
@@ -19,8 +19,8 @@ const Navbar = () => {
               setSelectedNavbarItem={setSelectedNavbarItem}
             />
           ))}
-        </HeaderList>
-      </HeaderNav>
+        </NavbarList>
+      </Nav>
     </Header>
   );
 };

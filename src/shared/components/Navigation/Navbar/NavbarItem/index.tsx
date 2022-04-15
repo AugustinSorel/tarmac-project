@@ -1,8 +1,8 @@
 import { FC } from "react";
 import navbarItems from "../../../../utils/navbarItems";
 import {
-  HeaderLink,
-  HeaderListItem,
+  NavbarItemTitle,
+  NavbarList,
   NavbarUnderline,
 } from "./NavbarItem.styled";
 
@@ -18,25 +18,23 @@ const NavbarItem: FC<Props> = ({
   setSelectedNavbarItem,
 }) => {
   const clickHandler = () => {
-    if (navbarItem === navbarItems[0]) {
-      setSelectedNavbarItem(navbarItems[1]);
-    } else {
+    if (navbarItem !== navbarItems[0]) {
       setSelectedNavbarItem(navbarItem);
     }
   };
 
-  const HeaderLinkUnderline = () => {
-    if (navbarItem !== navbarItems[0] && navbarItem === selectedNavbarItem) {
+  const NavbarTitleUnderline = () => {
+    if (navbarItem === selectedNavbarItem) {
       return <NavbarUnderline layoutId="underline" />;
     }
     return null;
   };
 
   return (
-    <HeaderListItem>
-      <HeaderLink onClick={clickHandler}>{navbarItem}</HeaderLink>
-      <HeaderLinkUnderline />
-    </HeaderListItem>
+    <NavbarList>
+      <NavbarItemTitle onClick={clickHandler}>{navbarItem}</NavbarItemTitle>
+      <NavbarTitleUnderline />
+    </NavbarList>
   );
 };
 
