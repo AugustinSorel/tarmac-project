@@ -1,26 +1,29 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const HeaderListItem = styled.li`
+  position: relative;
+  display: flex;
+
   &:first-child {
     flex: 1;
   }
 
-  &:first-child > a {
+  &:first-child > * {
     font-size: var(--font-size-large);
     font-weight: var(--font-weight-regular);
     text-transform: capitalize;
   }
 `;
 
-export const HeaderLink = styled(Link)`
+export const HeaderLink = styled.h1`
   color: var(--background-color);
   text-decoration: none;
   font-size: var(--font-size-medium);
   font-weight: var(--font-weight-light);
   text-transform: capitalize;
-  position: relative;
+  cursor: pointer;
+  user-select: none;
 `;
 
 export const NavbarUnderline = styled(motion.div)`

@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { NavbarLink } from "../../../../utils/navbarLink";
+import navbarItems from "../../../../utils/navbarItems";
 import {
   HeaderLink,
   HeaderListItem,
@@ -7,22 +7,26 @@ import {
 } from "./NavbarItem.styled";
 
 interface Props {
-  link: NavbarLink;
-  selectedLinkUrl: string;
-  setSelectedLinkUrl: (url: string) => void;
+  navbarItem: string;
+  selectedNavbarItem: string;
+  setSelectedNavbarItem: (url: string) => void;
 }
 
 const NavbarItem: FC<Props> = ({
-  link,
-  selectedLinkUrl,
-  setSelectedLinkUrl,
+  navbarItem,
+  selectedNavbarItem,
+  setSelectedNavbarItem,
 }) => {
   const clickHandler = () => {
-    setSelectedLinkUrl(link.url);
+    if (navbarItem === navbarItems[0]) {
+      setSelectedNavbarItem(navbarItems[1]);
+    } else {
+      setSelectedNavbarItem(navbarItem);
+    }
   };
 
   const HeaderLinkUnderline = () => {
-    if (link.name !== "tarmac" && link.url === selectedLinkUrl) {
+    if (navbarItem !== navbarItems[0] && navbarItem === selectedNavbarItem) {
       return <NavbarUnderline layoutId="underline" />;
     }
     return null;
@@ -30,10 +34,8 @@ const NavbarItem: FC<Props> = ({
 
   return (
     <HeaderListItem>
-      <HeaderLink to={link.url} onClick={clickHandler}>
-        {link.name}
-        <HeaderLinkUnderline />
-      </HeaderLink>
+      <HeaderLink onClick={clickHandler}>{navbarItem}</HeaderLink>
+      <HeaderLinkUnderline />
     </HeaderListItem>
   );
 };

@@ -1,29 +1,22 @@
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import navbarLinks, { NavbarLink } from "../../../utils/navbarLink";
+import { useState } from "react";
+import navbarItems from "../../../utils/navbarItems";
 import { Header, HeaderList, HeaderNav } from "./Navbar.styled";
 import NavbarItem from "./NavbarItem";
 
 const Navbar = () => {
   // the selected link url is used for the underline animation
-  const [selectedLinkUrl, setSelectedLinkUrl] = useState("");
-
-  const { pathname } = useLocation();
-
-  useEffect(() => {
-    setSelectedLinkUrl(pathname);
-  }, [setSelectedLinkUrl, pathname]);
+  const [selectedNavbarItem, setSelectedNavbarItem] = useState(navbarItems[1]);
 
   return (
     <Header>
       <HeaderNav>
         <HeaderList>
-          {navbarLinks.map((navbarLink: NavbarLink) => (
+          {navbarItems.map((navbarItem) => (
             <NavbarItem
-              key={navbarLink.name}
-              link={navbarLink}
-              selectedLinkUrl={selectedLinkUrl}
-              setSelectedLinkUrl={setSelectedLinkUrl}
+              key={navbarItem}
+              navbarItem={navbarItem}
+              selectedNavbarItem={selectedNavbarItem}
+              setSelectedNavbarItem={setSelectedNavbarItem}
             />
           ))}
         </HeaderList>

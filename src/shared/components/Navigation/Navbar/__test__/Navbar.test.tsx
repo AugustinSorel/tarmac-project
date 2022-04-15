@@ -1,43 +1,25 @@
 import { render, screen } from "@testing-library/react";
-import { BrowserRouter } from "react-router-dom";
 import Navbar from "..";
-import navbarLinks from "../../../../utils/navbarLink";
-
-const NavbarMock = () => {
-  return (
-    <BrowserRouter>
-      <Navbar />
-    </BrowserRouter>
-  );
-};
+import navbarItems from "../../../../utils/navbarItems";
 
 describe("Navbar", () => {
-  test("should render the correct number of links", () => {
-    render(<NavbarMock />);
+  test("should render the correct number of nav bar items", () => {
+    render(<Navbar />);
     const listElement = screen.getByRole("list");
 
     const numberOfLinksRendered = listElement.childElementCount;
-    const expectedNumberOfLinks = navbarLinks.length;
+    const expectedNumberOfLinks = navbarItems.length;
 
     expect(numberOfLinksRendered).toBe(expectedNumberOfLinks);
   });
 
-  test("should render the links file path correctly", () => {
-    render(<NavbarMock />);
+  test("should render the nav bar item from the file  correctly", () => {
+    render(<Navbar />);
     const listElement = screen.getByRole("list");
 
-    let areLinksCorrect = true;
-
-    navbarLinks.forEach((link) => {
-      const linkElement = listElement.querySelector(
-        `[href="${link.url}"]`
-      ) as HTMLElement;
-
-      if (linkElement.getAttribute("href") !== link.url) {
-        areLinksCorrect = false;
-      }
+    navbarItems.forEach((item, index) => {
+      const navbarItem = listElement.children[index];
+      expect(navbarItem.textContent).toBe(item);
     });
-
-    expect(areLinksCorrect).toBe(true);
   });
 });
