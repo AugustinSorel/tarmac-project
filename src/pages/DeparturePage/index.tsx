@@ -1,3 +1,5 @@
+import { useQuery } from "react-query";
+import { getFlights } from "../../api/flightApi";
 import {
   DepartureContainer,
   DepartureFilters,
@@ -7,6 +9,14 @@ import {
 } from "./DeparturePage.styled";
 
 const DeparturePage = () => {
+  const { isLoading, data } = useQuery("flightList", getFlights);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  console.log(data);
+
   return (
     <DepartureContainer>
       <DepartureTitle>departure</DepartureTitle>
