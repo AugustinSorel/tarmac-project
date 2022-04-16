@@ -22,6 +22,7 @@ const Pagination: FC<Props> = ({ maxPage, currentPage, setCurrentPage }) => {
     <>
       {currentPage > 1 ? (
         <PaginationButton
+          role={"button"}
           onClick={goBackHandler}
           whileHover={{ ...scaleUp }}
           whileTap={{ ...scaleDown }}
@@ -36,6 +37,7 @@ const Pagination: FC<Props> = ({ maxPage, currentPage, setCurrentPage }) => {
 
       {currentPage < maxPage ? (
         <PaginationButton
+          role={"button"}
           onClick={goForwardHandler}
           whileHover={{ ...scaleUp }}
           whileTap={{ ...scaleDown }}

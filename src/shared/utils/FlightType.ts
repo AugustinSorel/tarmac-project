@@ -6,11 +6,11 @@ export interface Departure {
   terminal: string;
   gate: string;
   delay: number;
-  scheduled: Date;
-  estimated: Date;
-  actual: Date;
-  estimated_runway: Date;
-  actual_runway: Date;
+  scheduled: Date | string;
+  estimated: Date | string;
+  actual: Date | string;
+  estimated_runway: Date | string;
+  actual_runway: Date | string;
 }
 
 export interface Arrival {
@@ -22,8 +22,8 @@ export interface Arrival {
   gate: string;
   baggage: string;
   delay: number;
-  scheduled: Date;
-  estimated: Date;
+  scheduled: Date | string;
+  estimated: Date | string;
   actual?: any;
   estimated_runway?: any;
   actual_runway?: any;
@@ -35,7 +35,7 @@ export interface Airline {
   icao: string;
 }
 
-export interface Flight {
+export interface FlightData {
   number: string;
   iata: string;
   icao: string;
@@ -50,7 +50,7 @@ export interface Aircraft {
 }
 
 export interface Live {
-  updated: Date;
+  updated: Date | string;
   latitude: number;
   longitude: number;
   altitude: number;
@@ -66,7 +66,7 @@ export interface Flight {
   departure: Departure;
   arrival: Arrival;
   airline: Airline;
-  flight: Flight;
+  flight: FlightData;
   aircraft: Aircraft;
   live: Live;
 }

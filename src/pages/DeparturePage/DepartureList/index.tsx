@@ -36,7 +36,7 @@ const DepartureList = () => {
     <DepartureListContainer>
       <DepartureFilters>filters...</DepartureFilters>
 
-      <DepartureFlightList>
+      <DepartureFlightList role={"list"}>
         {currentFlights.map((flight, index) => (
           <DepartureListItem key={index} index={index} flight={flight} />
         ))}

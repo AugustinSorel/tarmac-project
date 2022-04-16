@@ -21,7 +21,7 @@ export const DepartureFlightItem = styled(motion.li)`
   }
 `;
 
-export const DepartureFlightItemText = styled.h3`
+export const DepartureFlightItemText = styled.h4`
   font-size: var(--font-size-small);
   font-weight: var(--font-weight-light);
   text-transform: capitalize;
