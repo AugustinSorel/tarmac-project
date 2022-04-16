@@ -5,7 +5,7 @@ import NavbarItem from "./NavbarItem";
 
 const Navbar = () => {
   // the selected link url is used for the underline animation
-  const [selectedNavbarItem, setSelectedNavbarItem] = useState(navbarItems[1]);
+  const [selectedNavbarItem, setSelectedNavbarItem] = useState(navbarItems[2]);
 
   return (
     <Header>

@@ -38,7 +38,7 @@ export const DepartureFilters = styled.div`
 
 export const DepartureList = styled.ul`
   overflow: auto;
-  height: auto;
+  height: 100%;
 `;
 
 export const DeparturePaginationContainer = styled.div`
@@ -51,12 +51,4 @@ export const DeparturePaginationContainer = styled.div`
   left: 0;
   right: 0;
   backdrop-filter: blur(5px);
-`;
-
-export const PaginationButton = styled.button``;
-
-export const PaginationTitle = styled.h3`
-  font-size: var(--font-size-medium);
-  font-weight: var(--font-weight-light);
-  text-transform: capitalize;
 `;

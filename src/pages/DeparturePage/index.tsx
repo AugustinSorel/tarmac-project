@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useQuery } from "react-query";
 import { getFlights } from "../../api/flightApi";
+import Pagination from "../../shared/components/Navigation/UIElements/Pagination";
 import {
   DepartureContainer,
   DepartureFilters,
@@ -8,8 +9,6 @@ import {
   DeparturePaginationContainer,
   DepartureSection,
   DepartureTitle,
-  PaginationButton,
-  PaginationTitle,
 } from "./DeparturePage.styled";
 
 const DeparturePage = () => {
@@ -29,6 +28,7 @@ const DeparturePage = () => {
   const indexOfLastFlight = currentPage * flightsPerPage;
   const indexOfFirstFlight = indexOfLastFlight - flightsPerPage;
   const currentFlights = data.slice(indexOfFirstFlight, indexOfLastFlight);
+  const maxPage = Math.ceil(data.length / flightsPerPage);
 
   return (
     <DepartureContainer>
@@ -48,13 +48,11 @@ const DeparturePage = () => {
         </DepartureList>
 
         <DeparturePaginationContainer>
-          <PaginationButton onClick={() => setCurrentPage(currentPage - 1)}>
-            -
-          </PaginationButton>
-          <PaginationTitle>page: {currentPage}</PaginationTitle>
-          <PaginationButton onClick={() => setCurrentPage(currentPage + 1)}>
-            +
-          </PaginationButton>
+          <Pagination
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            maxPage={maxPage}
+          />
         </DeparturePaginationContainer>
       </DepartureSection>
     </DepartureContainer>
