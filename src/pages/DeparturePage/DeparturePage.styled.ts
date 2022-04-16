@@ -20,6 +20,7 @@ export const DepartureTitle = styled.h2`
 export const DepartureSection = styled.section`
   background-color: var(--background-color);
   overflow: auto;
+  flex: 1;
 
   & > * {
     padding: 1rem;
@@ -37,4 +38,25 @@ export const DepartureFilters = styled.div`
 
 export const DepartureList = styled.ul`
   overflow: auto;
+  height: auto;
+`;
+
+export const DeparturePaginationContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: var(--border-height) solid var(--color);
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  backdrop-filter: blur(5px);
+`;
+
+export const PaginationButton = styled.button``;
+
+export const PaginationTitle = styled.h3`
+  font-size: var(--font-size-medium);
+  font-weight: var(--font-weight-light);
+  text-transform: capitalize;
 `;
