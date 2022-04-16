@@ -18,7 +18,7 @@ const NavbarItem: FC<Props> = ({
   setSelectedNavbarItem,
 }) => {
   const clickHandler = () => {
-    // if the navbar item is not the the title on the left
+    // title is not part of the nav bar item
     if (navbarItem !== navbarItems[0]) {
       setSelectedNavbarItem(navbarItem);
     }

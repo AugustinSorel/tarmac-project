@@ -30,17 +30,11 @@ const GlobalStyle = createGlobalStyle`
 
  
     body {
-        background-color: var(--background-color);
+        background-color: var(--background-dark-color);
         color: var(--color);
         font-family: 'Poppins', sans-serif;
         font-weight: var(--font-weight-regular);
         font-size: var(--font-size-medium);
-    }
-
-    #root{
-        display: flex;
-        flex-direction: column;
-        height: 100vh;
     }
 
     ::selection{
@@ -58,7 +52,6 @@ const GlobalStyle = createGlobalStyle`
     }
     
     ::-webkit-scrollbar-thumb {
-        border-radius: var(--border-radius);
         background: var(--color);
     }
 
