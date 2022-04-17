@@ -31,7 +31,7 @@ const DepartureListItem: FC<Props> = ({ flight, index }) => {
 
       <DepartureFlightItemText>
         Depart:{" "}
-        {moment(flight.departure.scheduled).utc().format("HH:mm:ss a") || "N/A"}
+        {moment(flight.departure.scheduled).utc().format("HH:mm:ss") || "N/A"}
       </DepartureFlightItemText>
 
       <DepartureFlightItemText>

@@ -1,54 +1,41 @@
-import { useState } from "react";
 import { useQuery } from "react-query";
 import { getFlights } from "../../../api/flightApi";
-import Pagination from "../../../shared/components/Navigation/UIElements/Pagination";
-import {
-  DepartureFilters,
-  DepartureFlightList,
-  DepartureListContainer,
-  DeparturePaginationContainer,
-} from "./DepartureList.styled";
-import DepartureListItem from "./DepartureListItem";
+import DepartureFilters from "./DepartureFitlers";
+import DepartureFlightList from "./DepartureFlightList";
+import { DepartureListContainer } from "./DepartureList.styled";
+import DeparturePagination from "./DeparturePagination";
+import useDeparturePagination from "../../../shared/hooks/useDeparturePagination";
+import useFlightFilter from "../../../shared/hooks/useFlightFilter";
 
 const DepartureList = () => {
-  const { isLoading, data: flightsList } = useQuery("flightList", getFlights, {
+  const { status } = useQuery("flightList", getFlights, {
     refetchOnReconnect: false,
     refetchOnMount: false,
     refetchOnWindowFocus: false,
   });
+  const { filteredFlightList, updateFilterOption } = useFlightFilter();
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [flightsPerPage] = useState(10);
+  const { currentFlights, setCurrentPage, currentPage, maxPage } =
+    useDeparturePagination(filteredFlightList);
 
-  if (isLoading || !flightsList) {
+  if (status !== "success" || !currentFlights) {
     return <div>Loading...</div>;
   }
 
-  const indexOfLastFlight = currentPage * flightsPerPage;
-  const indexOfFirstFlight = indexOfLastFlight - flightsPerPage;
-  const currentFlights = flightsList.slice(
-    indexOfFirstFlight,
-    indexOfLastFlight
-  );
-  const maxPage = Math.ceil(flightsList.length / flightsPerPage);
-
   return (
     <DepartureListContainer>
-      <DepartureFilters>filters...</DepartureFilters>
+      <DepartureFilters
+        setCurrentPage={setCurrentPage}
+        updateFilterOption={updateFilterOption}
+      />
 
-      <DepartureFlightList role={"list"}>
-        {currentFlights.map((flight, index) => (
-          <DepartureListItem key={index} index={index} flight={flight} />
-        ))}
-      </DepartureFlightList>
+      <DepartureFlightList currentFlights={currentFlights} />
 
-      <DeparturePaginationContainer>
-        <Pagination
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-          maxPage={maxPage}
-        />
-      </DeparturePaginationContainer>
+      <DeparturePagination
+        currentPage={currentPage}
+        maxPage={maxPage}
+        setCurrentPage={setCurrentPage}
+      />
     </DepartureListContainer>
   );
 };

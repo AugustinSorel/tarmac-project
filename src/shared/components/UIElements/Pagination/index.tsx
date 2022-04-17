@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { scaleDown, scaleUp } from "../../../../framerMotion/whileVariants";
-import paths from "../../../../utils/paths";
+import { scaleUp, scaleDown } from "../../../framerMotion/whileVariants";
+import paths from "../../../utils/paths";
 import { PaginationButton, PaginationTitle } from "./Pagination.styled";
 
 interface Props {

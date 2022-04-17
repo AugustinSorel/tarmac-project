@@ -69,7 +69,7 @@ describe("DepartureListItem", () => {
 
     const departTime = screen.getByText(/Depart:/i);
 
-    expect(departTime.innerHTML).toBe("Depart: 13:20:10 pm");
+    expect(departTime.innerHTML).toBe("Depart: 13:20:10");
   });
 
   test("should render the flight status correctly", () => {
