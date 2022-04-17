@@ -1,4 +1,3 @@
-import moment from "moment";
 import { useQueryClient } from "react-query";
 import { Flight } from "../utils/FlightType";
 import { getDateAsHour } from "../utils/formatedDate";
