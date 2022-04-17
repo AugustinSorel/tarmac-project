@@ -4,38 +4,37 @@ import DepartureFilters from "./DepartureFitlers";
 import DepartureFlightList from "./DepartureFlightList";
 import { DepartureListContainer } from "./DepartureList.styled";
 import DeparturePagination from "./DeparturePagination";
-import useDeparturePagination from "../../../shared/hooks/useDeparturePagination";
-import useFlightFilter from "../../../shared/hooks/useFlightFilter";
+import { useEffect } from "react";
+import filterStore from "../../../store/filterStore";
 
 const DepartureList = () => {
-  const { status } = useQuery("flightList", getFlights, {
+  const { status, data: flights } = useQuery("flightList", getFlights, {
     refetchOnReconnect: false,
     refetchOnMount: false,
     refetchOnWindowFocus: false,
   });
-  const { filteredFlightList, updateFilterOption } = useFlightFilter();
 
-  const { currentFlights, setCurrentPage, currentPage, maxPage } =
-    useDeparturePagination(filteredFlightList);
+  const setFlightToBeFiltered = filterStore(
+    (state) => state.setFlightToBeFiltered
+  );
 
-  if (status !== "success" || !currentFlights) {
+  useEffect(() => {
+    if (flights) {
+      setFlightToBeFiltered(flights);
+    }
+  }, [flights, setFlightToBeFiltered]);
+
+  if (status !== "success") {
     return <div>Loading...</div>;
   }
 
   return (
     <DepartureListContainer>
-      <DepartureFilters
-        setCurrentPage={setCurrentPage}
-        updateFilterOption={updateFilterOption}
-      />
+      <DepartureFilters />
 
-      <DepartureFlightList currentFlights={currentFlights} />
+      <DepartureFlightList />
 
-      <DeparturePagination
-        currentPage={currentPage}
-        maxPage={maxPage}
-        setCurrentPage={setCurrentPage}
-      />
+      <DeparturePagination />
     </DepartureListContainer>
   );
 };

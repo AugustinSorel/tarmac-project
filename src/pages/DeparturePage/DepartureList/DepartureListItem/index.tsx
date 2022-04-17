@@ -1,4 +1,3 @@
-import moment from "moment";
 import { FC } from "react";
 import { getAirlineLogo } from "../../../../api/flightApi";
 import {
@@ -6,6 +5,7 @@ import {
   flightEnterInitial,
 } from "../../../../shared/framerMotion/flightEnterVariants";
 import { Flight } from "../../../../shared/utils/FlightType";
+import { getDateAsHour } from "../../../../shared/utils/formatedDate";
 import getFlightDelayed from "../../../../shared/utils/getFlightDelayed";
 import {
   DepartureFlightItem,
@@ -30,8 +30,7 @@ const DepartureListItem: FC<Props> = ({ flight, index }) => {
       </DepartureFlightItemText>
 
       <DepartureFlightItemText>
-        Depart:{" "}
-        {moment(flight.departure.scheduled).utc().format("HH:mm:ss") || "N/A"}
+        Depart: {getDateAsHour(flight.departure.scheduled) || "N/A"}
       </DepartureFlightItemText>
 
       <DepartureFlightItemText>

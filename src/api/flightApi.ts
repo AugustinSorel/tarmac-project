@@ -3,7 +3,7 @@ import { Flight } from "../shared/utils/FlightType";
 
 export const getFlights = async (): Promise<Flight[]> => {
   const response = await axios.get(
-    "http://api.aviationstack.com/v1/flights?access_key=4be16544f3fae7496148d229af007aa4"
+    "http://api.aviationstack.com/v1/flights?access_key=36c92528d10f7938f0bd33f153dbdd4b"
   );
 
   (response.data.data as Flight[]).sort((flightA: Flight, flightB: Flight) => {

@@ -1,18 +1,12 @@
-import { FC } from "react";
 import Pagination from "../../../../shared/components/UIElements/Pagination";
+import paginationStore from "../../../../store/paginationStore";
 import { DeparturePaginationContainer } from "./DeparturePagination.styled";
 
-interface Props {
-  currentPage: number;
-  setCurrentPage: (page: number) => void;
-  maxPage: number;
-}
+const DeparturePagination = () => {
+  const { currentPage, maxPage, setCurrentPage } = paginationStore(
+    (state) => state
+  );
 
-const DeparturePagination: FC<Props> = ({
-  currentPage,
-  setCurrentPage,
-  maxPage,
-}) => {
   return (
     <DeparturePaginationContainer>
       <Pagination

@@ -1,29 +1,22 @@
-import { ChangeEvent, FC } from "react";
+import { ChangeEvent } from "react";
 import Filter from "../../../../shared/components/FormElements/Filter";
 import { DepartureFiltersContainer } from "./DepartureFilters.styled";
 import useFilterOptions from "../../../../shared/hooks/useFilterOption";
+import paginationStore from "../../../../store/paginationStore";
+import filterStore from "../../../../store/filterStore";
 
-interface Props {
-  setCurrentPage: (page: number) => void;
-  updateFilterOption: (
-    key: "filterByCarrier" | "filterByTime",
-    value: string
-  ) => void;
-}
-
-const DepartureFilters: FC<Props> = ({
-  setCurrentPage,
-  updateFilterOption,
-}) => {
+const DepartureFilters = () => {
   const { getDepartureTimeOptions, getCarrierOptions } = useFilterOptions();
+  const setCurrentPage = paginationStore((state) => state.setCurrentPage);
+  const setFilterOptions = filterStore((state) => state.setFilterOptions);
 
   const filterCarrierHandler = (e: ChangeEvent<HTMLSelectElement>) => {
-    updateFilterOption("filterByCarrier", e.target.value);
+    setFilterOptions({ filterByCarrier: e.target.value });
     setCurrentPage(1);
   };
 
   const filterTimeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
-    updateFilterOption("filterByTime", e.target.value);
+    setFilterOptions({ filterByTime: e.target.value });
     setCurrentPage(1);
   };
 

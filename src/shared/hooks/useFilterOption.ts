@@ -1,6 +1,7 @@
 import moment from "moment";
 import { useQueryClient } from "react-query";
 import { Flight } from "../utils/FlightType";
+import { getDateAsHour } from "../utils/formatedDate";
 
 const useFilterOption = () => {
   const queryClient = useQueryClient();
@@ -9,11 +10,7 @@ const useFilterOption = () => {
   const getDepartureTimeOptions = () => {
     const departureAirportList = new Set<string>(["All"]);
     flightsList.forEach((flight) => {
-      departureAirportList.add(
-        moment(flight.departure.scheduled as string)
-          .utc()
-          .format("HH:mm:ss")
-      );
+      departureAirportList.add(getDateAsHour(flight.departure.scheduled));
     });
     return Array.from(departureAirportList);
   };
