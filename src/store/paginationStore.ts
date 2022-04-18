@@ -25,13 +25,18 @@ const paginationStore = zustand<PaginationStore>((set, get) => ({
     }
   },
 
-  getPaginatedFlights(data: Flight[]) {
+  /**
+   *
+   * @param flight the list of flights to paginate
+   * @returns the flights for the current page
+   */
+  getPaginatedFlights(flight: Flight[]) {
     const indexOfLastFlight = get().currentPage * get().dataPerPage;
     const indexOfFirstFlight = indexOfLastFlight - get().dataPerPage;
 
-    set({ numberOfPages: Math.ceil(data.length / get().dataPerPage) });
+    set({ numberOfPages: Math.ceil(flight.length / get().dataPerPage) });
 
-    return data.slice(indexOfFirstFlight, indexOfLastFlight);
+    return flight.slice(indexOfFirstFlight, indexOfLastFlight);
   },
 }));
 

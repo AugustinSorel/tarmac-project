@@ -10,9 +10,3 @@ export const DepartureTitle = styled.h2`
   font-weight: var(--font-weight-light);
   text-transform: capitalize;
 `;
-
-export const DepartureDate = styled.h3`
-  font-size: var(--font-size-medium);
-  font-weight: var(--font-weight-regular);
-  padding-bottom: 1rem;
-`;
