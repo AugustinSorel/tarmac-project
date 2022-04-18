@@ -20,6 +20,7 @@ export const FilterSelect = styled.select`
   border-bottom: var(--border-height) solid var(--color);
   cursor: pointer;
   background-color: transparent;
+  width: 100px;
 `;
 
 export const FilterOption = styled.option`

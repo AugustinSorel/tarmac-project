@@ -6,7 +6,8 @@ import paginationStore from "../../../../store/paginationStore";
 import filterStore from "../../../../store/filterStore";
 
 const DepartureFilters = () => {
-  const { getDepartureTimeOptions, getCarrierOptions } = useFilterOptions();
+  const { getDepartureTimeOptions, getCarrierOptions, getDestinationOptions } =
+    useFilterOptions();
   const setCurrentPage = paginationStore((state) => state.setCurrentPage);
   const setFilterOptions = filterStore((state) => state.setFilterOptions);
 
@@ -17,6 +18,11 @@ const DepartureFilters = () => {
 
   const filterTimeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
     setFilterOptions({ filterByTime: e.target.value });
+    setCurrentPage(1);
+  };
+
+  const filterDestinationHandler = (e: ChangeEvent<HTMLSelectElement>) => {
+    setFilterOptions({ filterByDestination: e.target.value });
     setCurrentPage(1);
   };
 
@@ -32,6 +38,12 @@ const DepartureFilters = () => {
         title="time"
         data={getDepartureTimeOptions()}
         filterHandler={filterTimeHandler}
+      />
+
+      <Filter
+        title="destination"
+        data={getDestinationOptions()}
+        filterHandler={filterDestinationHandler}
       />
     </DepartureFiltersContainer>
   );

@@ -37,9 +37,20 @@ const filterStore = zustand<FilterStore>((set, get) => ({
       return flight.airline.name === filterOptions.filterByCarrier;
     };
 
+    const filterByDestination = (flight: Flight) => {
+      if (filterOptions.filterByDestination === "All") {
+        return true;
+      }
+
+      return flight.arrival.airport === filterOptions.filterByDestination;
+    };
+
     const filteredFlights: Flight[] = get().flightToBeFiltered;
 
-    return filteredFlights.filter(filterByAirline).filter(filterByTime);
+    return filteredFlights
+      .filter(filterByAirline)
+      .filter(filterByTime)
+      .filter(filterByDestination);
   },
 
   setFlightToBeFiltered: (flights) => {
@@ -51,6 +62,7 @@ const filterStore = zustand<FilterStore>((set, get) => ({
   filterOptions: {
     filterByCarrier: "All",
     filterByTime: "All",
+    filterByDestination: "All",
   },
 
   setFilterOptions: (newValue: { [key: string]: string }) => {

@@ -20,7 +20,21 @@ const useFilterOption = () => {
     return Array.from(airlineList);
   };
 
-  return { getDepartureTimeOptions, getCarrierOptions };
+  const getDestinationOptions = () => {
+    const destinationList = new Set<string>(["All"]);
+    flightToBeFiltered.forEach((flight) => {
+      if (flight.arrival.airport) {
+        destinationList.add(flight.arrival.airport);
+      }
+    });
+    return Array.from(destinationList);
+  };
+
+  return {
+    getDepartureTimeOptions,
+    getCarrierOptions,
+    getDestinationOptions,
+  };
 };
 
 export default useFilterOption;
