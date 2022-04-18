@@ -3,6 +3,7 @@ import { Flight } from "../shared/utils/FlightType";
 
 interface PaginationStore {
   currentPage: number;
+  numberOfPages: number;
   setCurrentPage: (currangePage: number) => void;
 
   getPaginatedFlights: (data: Flight[]) => Flight[];
@@ -14,6 +15,7 @@ interface PaginationStore {
 
 const paginationStore = zustand<PaginationStore>((set, get) => ({
   currentPage: 1,
+  numberOfPages: 1,
   maxPage: 10,
   dataPerPage: 10,
 
@@ -26,6 +28,9 @@ const paginationStore = zustand<PaginationStore>((set, get) => ({
   getPaginatedFlights(data: Flight[]) {
     const indexOfLastFlight = get().currentPage * get().dataPerPage;
     const indexOfFirstFlight = indexOfLastFlight - get().dataPerPage;
+
+    set({ numberOfPages: Math.ceil(data.length / get().dataPerPage) });
+
     return data.slice(indexOfFirstFlight, indexOfLastFlight);
   },
 }));

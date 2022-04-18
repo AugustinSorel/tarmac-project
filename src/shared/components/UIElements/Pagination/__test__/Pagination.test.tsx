@@ -9,7 +9,7 @@ describe("Pagination", () => {
     render(
       <Pagination
         currentPage={curentPage}
-        maxPage={10}
+        numberOfPages={10}
         setCurrentPage={setCurrentPage}
       />
     );
@@ -26,7 +26,7 @@ describe("Pagination", () => {
     render(
       <Pagination
         currentPage={curentPage}
-        maxPage={10}
+        numberOfPages={10}
         setCurrentPage={setCurrentPage}
       />
     );
@@ -43,7 +43,7 @@ describe("Pagination", () => {
     render(
       <Pagination
         currentPage={curentPage}
-        maxPage={10}
+        numberOfPages={10}
         setCurrentPage={setCurrentPage}
       />
     );
@@ -60,7 +60,7 @@ describe("Pagination", () => {
     render(
       <Pagination
         currentPage={curentPage}
-        maxPage={10}
+        numberOfPages={10}
         setCurrentPage={setCurrentPage}
       />
     );

@@ -6,10 +6,14 @@ import { PaginationButton, PaginationTitle } from "./Pagination.styled";
 interface Props {
   currentPage: number;
   setCurrentPage: (page: number) => void;
-  maxPage: number;
+  numberOfPages: number;
 }
 
-const Pagination: FC<Props> = ({ maxPage, currentPage, setCurrentPage }) => {
+const Pagination: FC<Props> = ({
+  numberOfPages,
+  currentPage,
+  setCurrentPage,
+}) => {
   const goBackHandler = () => {
     setCurrentPage(currentPage - 1);
   };
@@ -35,7 +39,7 @@ const Pagination: FC<Props> = ({ maxPage, currentPage, setCurrentPage }) => {
 
       <PaginationTitle>page: {currentPage}</PaginationTitle>
 
-      {currentPage < maxPage ? (
+      {currentPage < numberOfPages ? (
         <PaginationButton
           role={"button"}
           onClick={goForwardHandler}

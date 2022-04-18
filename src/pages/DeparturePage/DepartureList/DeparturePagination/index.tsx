@@ -3,7 +3,7 @@ import paginationStore from "../../../../store/paginationStore";
 import { DeparturePaginationContainer } from "./DeparturePagination.styled";
 
 const DeparturePagination = () => {
-  const { currentPage, maxPage, setCurrentPage } = paginationStore(
+  const { currentPage, setCurrentPage, numberOfPages } = paginationStore(
     (state) => state
   );
 
@@ -12,7 +12,7 @@ const DeparturePagination = () => {
       <Pagination
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
-        maxPage={maxPage}
+        numberOfPages={numberOfPages}
       />
     </DeparturePaginationContainer>
   );

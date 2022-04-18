@@ -8,11 +8,8 @@ describe("DepartureFlightList", () => {
     filterStore.setState({
       getFilteredFlights: () => [flightMock, flightMock, flightMock],
     });
-
     render(<DepartureFlightList />);
-
     const list = screen.getByRole("list");
-
     expect(list.children.length).toBe(3);
   });
 });

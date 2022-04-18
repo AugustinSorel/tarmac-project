@@ -1,31 +1,32 @@
+import { useEffect } from "react";
 import { useQuery } from "react-query";
 import { getFlights } from "../../../api/flightApi";
+import Loader from "../../../shared/components/UIElements/Loader";
+import filterStore from "../../../store/filterStore";
 import DepartureFilters from "./DepartureFitlers";
 import DepartureFlightList from "./DepartureFlightList";
 import { DepartureListContainer } from "./DepartureList.styled";
 import DeparturePagination from "./DeparturePagination";
-import { useEffect } from "react";
-import filterStore from "../../../store/filterStore";
 
 const DepartureList = () => {
-  const { status, data: flights } = useQuery("flightList", getFlights, {
+  const { status, data: initialFlights } = useQuery("flightList", getFlights, {
     refetchOnReconnect: false,
     refetchOnMount: false,
     refetchOnWindowFocus: false,
   });
 
-  const setFlightToBeFiltered = filterStore(
-    (state) => state.setFlightToBeFiltered
+  const { setFlightToBeFiltered, flightToBeFiltered } = filterStore(
+    (state) => state
   );
 
   useEffect(() => {
-    if (flights) {
-      setFlightToBeFiltered(flights);
+    if (initialFlights) {
+      setFlightToBeFiltered(initialFlights);
     }
-  }, [flights, setFlightToBeFiltered]);
+  }, [initialFlights, setFlightToBeFiltered]);
 
-  if (status !== "success") {
-    return <div>Loading...</div>;
+  if (status !== "success" || flightToBeFiltered.length === 0) {
+    return <Loader />;
   }
 
   return (
