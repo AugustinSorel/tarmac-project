@@ -10,13 +10,14 @@ export const DepartureFiltersContainer = styled.div`
   backdrop-filter: blur(5px);
 
   display: flex;
-  align-items: center;
   justify-content: end;
   gap: 2rem;
 
   @media screen and (max-width: 768px) {
-    justify-content: center;
     flex-direction: column;
-    gap: 1rem;
+
+    & > * {
+      justify-content: space-between;
+    }
   }
 `;

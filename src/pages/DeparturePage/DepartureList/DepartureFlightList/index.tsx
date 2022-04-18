@@ -19,7 +19,7 @@ const DepartureFlightList = () => {
   }, [getFilteredFlights, currentPage, filterOptions, getPaginatedFlights]);
 
   if (flightToDisplay.length === 0) {
-    return <div>no place found</div>;
+    return <div>no flight found</div>;
   }
 
   return (

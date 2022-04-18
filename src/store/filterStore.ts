@@ -20,40 +20,26 @@ const filterStore = zustand<FilterStore>((set, get) => ({
   getFilteredFlights: () => {
     const filterOptions = get().filterOptions;
 
-    const filteredFlights = get().flightToBeFiltered.filter((flight) => {
-      if (
-        filterOptions.filterByCarrier === "All" &&
-        filterOptions.filterByTime === "All"
-      ) {
+    const filterByTime = (flight: Flight) => {
+      if (filterOptions.filterByTime === "All") {
         return true;
       }
 
-      if (
-        filterOptions.filterByCarrier !== "All" &&
-        filterOptions.filterByTime !== "All"
-      ) {
-        return (
-          flight.airline.name === filterOptions.filterByCarrier &&
-          getDateAsHour(flight.departure.scheduled) ===
-            filterOptions.filterByTime
-        );
+      const departureTime = getDateAsHour(flight.departure.scheduled);
+      return departureTime === filterOptions.filterByTime;
+    };
+
+    const filterByAirline = (flight: Flight) => {
+      if (filterOptions.filterByCarrier === "All") {
+        return true;
       }
 
-      if (filterOptions.filterByCarrier !== "All") {
-        return flight.airline.name === filterOptions.filterByCarrier;
-      }
+      return flight.airline.name === filterOptions.filterByCarrier;
+    };
 
-      if (filterOptions.filterByTime !== "All") {
-        return (
-          getDateAsHour(flight.departure.scheduled) ===
-          filterOptions.filterByTime
-        );
-      }
+    const filteredFlights: Flight[] = get().flightToBeFiltered;
 
-      return false;
-    });
-
-    return filteredFlights;
+    return filteredFlights.filter(filterByAirline).filter(filterByTime);
   },
 
   setFlightToBeFiltered: (flights) => {
