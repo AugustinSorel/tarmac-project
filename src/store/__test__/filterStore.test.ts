@@ -28,6 +28,7 @@ describe("filterStore", () => {
     const data = {
       filterByCarrier: "test",
       filterByTime: "test",
+      filterByDestination: "test",
     };
 
     setFilterOptions(data);
@@ -40,6 +41,7 @@ describe("filterStore", () => {
     const data = {
       filterByCarrier: "test",
       filterByTime: "test",
+      filterByDestination: "test",
     };
 
     setFilterOptions(data);
@@ -66,6 +68,7 @@ describe("filterStore", () => {
       filterOptions: {
         filterByCarrier: "test",
         filterByTime: "All",
+        filterByDestination: "All",
       },
     });
 
@@ -92,6 +95,34 @@ describe("filterStore", () => {
       filterOptions: {
         filterByCarrier: "All",
         filterByTime: getDateAsHour("2019-12-12T04:20:10+00:00"),
+        filterByDestination: "All",
+      },
+    });
+
+    setFlightToBeFiltered(data);
+
+    const getFilteredFlights = filterStore.getState().getFilteredFlights();
+
+    expect(getFilteredFlights).toEqual([flightOne]);
+  });
+
+  test("should filter by destination correctly", () => {
+    const setFlightToBeFiltered = filterStore.getState().setFlightToBeFiltered;
+
+    const flightOne = {
+      ...flightMock,
+      arrival: {
+        ...flightMock.arrival,
+        airport: "test",
+      },
+    };
+    const data = [flightOne, flightMock];
+
+    filterStore.setState({
+      filterOptions: {
+        filterByCarrier: "All",
+        filterByTime: "All",
+        filterByDestination: "test",
       },
     });
 
